@@ -1,11 +1,10 @@
 package com.bardiademon.moviescut;
 
-public class Main
+public final class Main
 {
-
-    public static void main (String[] args)
+    public static void main (final String[] args)
     {
-        System.out.println ("bardiademon");
+        bardiademon.run ();
         new MoviesCut ();
     }
 }

@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
@@ -28,6 +31,7 @@ public final class MoviesCut
         convertDuration = new ConvertDuration ();
 
         final JFileChooser chooser = new JFileChooser ();
+        chooser.setMultiSelectionEnabled (true);
 
         reader = new BufferedReader (new InputStreamReader (System.in));
 
@@ -89,24 +93,32 @@ public final class MoviesCut
                 }
                 if (result.get () == JFileChooser.OPEN_DIALOG)
                 {
-                    final File movie = chooser.getSelectedFile ();
+                    final List <File> movies;
 
-                    final IContainer container = IContainer.make ();
-                    container.open (movie.getAbsolutePath () , IContainer.Type.READ , null);
-                    System.out.println (movie.getName ());
-                    final ConvertDuration.Time convert = convertDuration.convert (container.getDuration ());
+                    if (chooser.isMultiSelectionEnabled ())
+                        movies = Arrays.asList (chooser.getSelectedFiles ());
+                    else
+                        movies = Collections.singletonList (chooser.getSelectedFile ());
 
-                    final int l = (int) (convert._Duration.toNanos () / minPart);
-                    System.out.println ("number of 10 => " + l);
-                    System.out.println (convert.Hour + ":" + convert.Minutes + ":" + convert.Second);
-                    System.out.println (GetSize.Get (container.getFileSize ()));
-                    if (l >= 1)
+                    for (final File movie : movies)
                     {
-                        System.out.println ("=======");
-                        cut (new ToCut (convert , l , movie));
+                        final IContainer container = IContainer.make ();
+                        container.open (movie.getAbsolutePath () , IContainer.Type.READ , null);
+                        System.out.println (movie.getName ());
+                        final ConvertDuration.Time convert = convertDuration.convert (container.getDuration ());
+
+                        final int l = (int) (convert._Duration.toNanos () / minPart);
+                        System.out.println ("number of 10 => " + l);
+                        System.out.println (convert.Hour + ":" + convert.Minutes + ":" + convert.Second);
+                        System.out.println (GetSize.Get (container.getFileSize ()));
+                        if (l >= 1)
+                        {
+                            System.out.println ("=======");
+                            cut (new ToCut (convert , l , movie));
+                        }
+                        else System.out.println ("This movie < select time");
+                        System.out.println ("===========================");
                     }
-                    else System.out.println ("This movie < select time");
-                    System.out.println ("===========================");
                 }
                 else break;
             }
