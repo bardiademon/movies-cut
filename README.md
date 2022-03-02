@@ -16,5 +16,5 @@ Divide the film into separate parts
    
 3) Run jar file 
     ```
-        java[1.8 or higher] -jar ROOT/MovieCut.jar
+        java[1.8 or higher] -jar ROOT/MoviesCut.jar
    ```
