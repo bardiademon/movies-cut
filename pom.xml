@@ -26,6 +26,7 @@
             <name>beaTunes Repository</name>
             <url>https://www.beatunes.com/repo/maven2</url>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -101,4 +102,5 @@
         </dependency>
 
     </dependencies>
+
 </project>

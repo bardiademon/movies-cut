@@ -4,21 +4,21 @@ import static java.lang.System.out;
 
 public final class bardiademon
 {
-    public bardiademon ()
+    public bardiademon()
     {
-        print ();
+        print();
     }
 
-    private void print ()
+    public static void run()
     {
-        out.println ("----------------------------------------------------");
-        out.println ("bardiademon");
-        out.println ("https://bardiademon.com");
-        out.println ("----------------------------------------------------");
+        new bardiademon();
     }
 
-    public static void run ()
+    private void print()
     {
-        new bardiademon ();
+        out.println("----------------------------------------------------");
+        out.println("bardiademon");
+        out.println("https://www.bardiademon.com");
+        out.println("----------------------------------------------------");
     }
 }

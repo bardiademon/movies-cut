@@ -2,7 +2,7 @@ package com.bardiademon.moviescut;
 
 public abstract class GetSize
 {
-    public static String Get (Long Byte)
+    public static String Get(Long Byte)
     {
         if (Byte == null) return null;
 
@@ -13,15 +13,15 @@ public abstract class GetSize
             if (mb >= 1024)
             {
                 float gb = mb / 1024;
-                return String.format ("%s GB" , toString (gb));
+                return String.format("%s GB" , toString(gb));
             }
-            else return String.format ("%s MB" , toString (mb));
+            else return String.format("%s MB" , toString(mb));
         }
-        else return String.format ("%s KB" , toString (kb));
+        else return String.format("%s KB" , toString(kb));
     }
 
-    private static String toString (double size)
+    private static String toString(double size)
     {
-        return String.format ("%.3f" , Math.abs (size));
+        return String.format("%.3f" , Math.abs(size));
     }
 }
