@@ -11,10 +11,10 @@ Divide the film into separate parts
    
 2) ffmpeg move to LIB_DIR
     ```
-        ROOT/lib
+   ROOT/lib
    ```
    
 3) Run jar file 
     ```
-        java[1.8 or higher] -jar ROOT/MoviesCut.jar
+   java[1.8 or higher] -jar ROOT/MoviesCut.jar
    ```
